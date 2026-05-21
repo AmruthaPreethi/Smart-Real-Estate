@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LandScope</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero-section">
+        <div class="hero-copy">
+          <p class="eyebrow">Smart Real Estate Discovery</p>
+          <h1>Enter your location and explore lands, sites, apartments, and plots with market intelligence.</h1>
+          <p class="hero-text" id="hero-text">
+            This project starter lets users search by location, view a map, check properties for sale or rent, compare
+            current and past values, understand infrastructure impact, chat with owners, and estimate construction
+            costs.
+          </p>
+
+          <form class="search-panel" id="search-form">
+            <label for="location" class="label">Enter Your Location</label>
+            <div class="search-row">
+              <input
+                id="location"
+                class="text-input"
+                type="text"
+                placeholder="Example: Bengaluru, Hyderabad, Chennai"
+              />
+              <button class="primary-button" type="submit">Search</button>
+            </div>
+          </form>
+
+          <div class="filter-row">
+            <select class="filter-input" id="city-filter">
+              <option value="All">All Cities</option>
+            </select>
+
+            <select class="filter-input" id="type-filter">
+              <option value="All">All Types</option>
+              <option value="Plot">Plot</option>
+              <option value="Land">Land</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Site">Site</option>
+            </select>
+
+            <select class="filter-input" id="mode-filter">
+              <option value="All">All Modes</option>
+              <option value="Sale">Sale</option>
+              <option value="Rent">Rent</option>
+            </select>
+          </div>
+
+          <p class="api-note">
+            Optional: add your Google Maps API key inside <code>scripts/utils.js</code> if you want the official embed URL.
+          </p>
+          <p class="dataset-summary" id="dataset-summary"></p>
+          <p class="loading-state" id="loading-state"></p>
+        </div>
+
+        <div class="hero-map-card">
+          <p class="map-title">Location Map</p>
+          <iframe id="map-frame" title="Location map" loading="lazy" allowfullscreen></iframe>
+          <p class="map-caption" id="map-caption"></p>
+        </div>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Available Properties</h2>
+            <span id="result-count">0 result(s)</span>
+          </div>
+          <div class="property-list" id="property-list"></div>
+        </section>
+
+        <section class="panel detail-panel">
+          <div class="panel-heading">
+            <h2 id="detail-title">Property Details</h2>
+            <span id="detail-city"></span>
+          </div>
+
+          <div class="detail-grid" id="detail-stats"></div>
+          <p class="description" id="detail-description"></p>
+
+          <div class="insight-columns">
+            <div>
+              <h3>Location Details</h3>
+              <p id="detail-address"></p>
+              <p id="detail-owner"></p>
+              <p id="owner-contact"></p>
+              <ul class="clean-list" id="detail-highlights"></ul>
+            </div>
+
+            <div>
+              <h3>Real-Life Market Signals</h3>
+              <ul class="signal-list" id="detail-signals"></ul>
+              <p class="market-label" id="market-label"></p>
+              <p class="insight-note">
+                Example: if a new highway, metro line, or flyover is being built nearby, market value often rises
+                because accessibility improves and demand increases.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Construction Cost Estimator</h2>
+            <span>Approximate only</span>
+          </div>
+
+          <p class="estimator-text" id="estimate-summary"></p>
+          <label class="label" for="quality-range">Construction Quality Multiplier</label>
+          <input id="quality-range" type="range" min="0.9" max="1.6" step="0.1" value="1" />
+          <div class="estimate-box">
+            <span id="quality-value">Selected multiplier: 1.0x</span>
+            <strong id="estimate-total"></strong>
+            <p id="estimate-rate"></p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>Customer Chat</h2>
+            <select class="role-toggle" id="role-toggle">
+              <option value="customer">Send as Customer</option>
+              <option value="owner">Send as Owner</option>
+            </select>
+          </div>
+
+          <div class="chat-box" id="chat-box"></div>
+
+          <form class="chat-form" id="chat-form">
+            <input
+              class="text-input"
+              id="chat-input"
+              type="text"
+              placeholder="Ask about approvals, documents, price, availability"
+            />
+            <button class="primary-button" type="submit">Send</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="./scripts/utils.js"></script>
+    <script src="./scripts/data-loader.js"></script>
+    <script src="./scripts/chat-store.js"></script>
+    <script src="./scripts/app-main.js"></script>
+    <script src="./scripts/bootstrap.js"></script>
+  </body>
+</html>
